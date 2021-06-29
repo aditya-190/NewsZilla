@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Newszilla</string>
+    <string name="my_feed">My Feed</string>
+    <string name="all_stories">All Stories</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="discover">Discover</string>
+    <string name="suggested_topics">SUGGESTED TOPICS</string>
+    <string name="top_news">Top News</string>
+    <string name="see_all">See All</string>
+    <string name="top_stories">Top Stories</string>
+    <string name="read_more_about_the_news">Click here to read more.</string>
+    <string name="internet_not_found">Internet not found</string>
+    <string name="_404">404</string>
+    <string name="oops">Oops…</string>
+    <string name="please_check_your_network_connection_and_try_again">Please check your network connection and try again</string>
+    <string name="try_again">Try again</string>
+    <string name="show_news">Show News</string>
+    <string name="news_opener">News Opener</string>
+</resources>

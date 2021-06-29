@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llNoInternetRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/oops"
+        android:textColor="@color/textColorDarkestGrey"
+        android:textSize="16sp"
+        android:textStyle="normal" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/_404"
+        android:textColor="@color/textColorDarkestGrey"
+        android:textSize="56sp"
+        android:textStyle="normal" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:text="@string/internet_not_found"
+        android:textColor="@color/textColorDarkestGrey"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/icon_no_internet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="23dp"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="4sp"
+        android:text="@string/please_check_your_network_connection_and_try_again"
+        android:textColor="@color/textColorDarkestGrey"
+        android:textSize="12sp"
+        android:textStyle="normal" />
+
+    <RelativeLayout
+        android:id="@+id/rlTryAgain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_background"
+        android:gravity="center"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:text="@string/try_again"
+            android:textColor="@color/buttonColor"
+            android:textSize="14sp"
+            app:drawableLeftCompat="@drawable/icon_refresh"
+            app:drawableTint="@color/buttonColor" />
+    </RelativeLayout>
+</LinearLayout>

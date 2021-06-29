@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFFFF</color>
+    <color name="colorBackground">#FF1DA1F2</color>
+    <color name="colorPrimaryVariant">#FF1DA1F2</color>
+    <color name="colorOnPrimary">#FF000000</color>
+    <color name="textColorBlack">#FF000000</color>
+    <color name="textColorWhite">#FFFFFFFF</color>
+    <color name="textColorGrey">#FF4B4B4B</color>
+    <color name="textColorDarkGrey">#FFAAAAAA</color>
+    <color name="textColorDarkestGrey">#6e7783</color>
+    <color name="rippleColor">#FFFF871F</color>
+    <color name="buttonColor">#f1404b</color>
+    <color name="buttonColorSelected">#F8D2D4</color>
+</resources>

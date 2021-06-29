@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clPageToolbar"
+            android:layout_width="0dp"
+            android:layout_height="?android:attr/actionBarSize"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvPageBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="@string/my_feed"
+                android:textColor="@color/textColorBlack"
+                android:textSize="14sp"
+                app:drawableEndCompat="@drawable/icon_next"
+                app:drawableTint="@color/textColorBlack"
+                app:layout_constraintBottom_toBottomOf="@id/clPageToolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/clPageToolbar" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/mark_script"
+                android:gravity="center"
+                android:text="@string/discover"
+                android:textColor="@color/textColorBlack"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/clPageToolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/clPageToolbar" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/aciBookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_bookmarks_collection"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/textColorBlack" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvSuggestedTopics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/suggested_topics"
+            android:textColor="@color/textColorBlack"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clPageToolbar" />
+
+        <View
+            android:id="@+id/viewSuggestedStoryUnderline"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/background_underline"
+            app:layout_constraintStart_toStartOf="@id/tvSuggestedTopics"
+            app:layout_constraintTop_toBottomOf="@id/tvSuggestedTopics" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSuggestedTopics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewSuggestedStoryUnderline"
+            app:spanCount="3"
+            tools:itemCount="7"
+            tools:listitem="@layout/single_topics_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

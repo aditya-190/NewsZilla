@@ -1,0 +1,163 @@
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainSwipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clPageToolbar"
+                android:layout_width="0dp"
+                android:layout_height="?android:attr/actionBarSize"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvPageBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:text="@string/discover"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="14sp"
+                    app:drawableStartCompat="@drawable/icon_back"
+                    app:drawableTint="@color/textColorBlack"
+                    app:layout_constraintBottom_toBottomOf="@id/clPageToolbar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/clPageToolbar" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/mark_script"
+                    android:gravity="center"
+                    android:text="@string/my_feed"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/clPageToolbar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/clPageToolbar" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/aciPageRefresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_refresh"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/textColorBlack" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpTop5News"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="170dp"
+                android:orientation="horizontal"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clPageToolbar" />
+
+            <TextView
+                android:id="@+id/tvTopStoryHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/top_stories"
+                android:textColor="@color/textColorBlack"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vpTop5News" />
+
+            <View
+                android:id="@+id/viewTopStoryUnderline"
+                android:layout_width="30dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/background_underline"
+                app:layout_constraintStart_toStartOf="@id/tvTopStoryHeading"
+                app:layout_constraintTop_toBottomOf="@id/tvTopStoryHeading" />
+
+            <TextView
+                android:id="@+id/tvSeeAllStories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="4dp"
+                android:text="@string/see_all"
+                android:textColor="@color/textColorBlack"
+                android:textSize="16sp"
+                app:drawableEndCompat="@drawable/icon_next"
+                app:drawableTint="@color/textColorBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvTopStoryHeading" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTopStories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewTopStoryUnderline"
+                tools:itemCount="3"
+                tools:listitem="@layout/single_story_item" />
+
+            <TextView
+                android:id="@+id/tvNewsHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/top_news"
+                android:textColor="@color/textColorBlack"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvTopStories" />
+
+            <View
+                android:id="@+id/viewNewsUnderline"
+                android:layout_width="30dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/background_underline"
+                app:layout_constraintStart_toStartOf="@id/tvNewsHeading"
+                app:layout_constraintTop_toBottomOf="@id/tvNewsHeading" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvNews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewNewsUnderline"
+                tools:itemCount="3"
+                tools:listitem="@layout/single_news_item" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

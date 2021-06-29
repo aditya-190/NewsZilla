@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivSingleNews1"
+        android:layout_width="0dp"
+        android:layout_height="270dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="-12dp"
+        app:cardCornerRadius="10dp"
+        app:cardMaxElevation="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/rlFooter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fabShare">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvNewsHeading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/textColorDarkGrey"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/textColorGrey"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:maxLength="260"
+                    android:textColor="@color/textColorGrey"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        android:elevation="16dp"
+        android:focusable="true"
+        android:src="@drawable/icon_share"
+        app:elevation="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/ivSingleNews1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivSingleNews1"
+        app:rippleColor="@color/rippleColor" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabBookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        android:elevation="16dp"
+        android:focusable="true"
+        android:src="@drawable/icon_bookmark"
+        app:elevation="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/ivSingleNews1"
+        app:layout_constraintEnd_toStartOf="@id/fabShare"
+        app:layout_constraintTop_toBottomOf="@id/ivSingleNews1"
+        app:rippleColor="@color/rippleColor" />
+
+    <RelativeLayout
+        android:id="@+id/rlFooter"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/ivSingleNews2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.4"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_image" />
+
+        <TextView
+            android:id="@+id/tvReadMore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="16dp"
+            android:gravity="center_vertical"
+            android:text="@string/read_more_about_the_news"
+            android:textColor="@color/textColorWhite"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
