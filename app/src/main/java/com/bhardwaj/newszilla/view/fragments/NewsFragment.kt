@@ -8,19 +8,25 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.bhardwaj.newszilla.R
+import com.bhardwaj.newszilla.repository.model.News
 import com.bhardwaj.newszilla.view.activities.ActivitySingleNews.Companion.vpActivitySingleNews
+import com.bhardwaj.newszilla.viewmodel.NewsViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 class NewsFragment(
     private var newsImage: String,
+    private var newsURL: String,
     private var newsHeading: String,
     private var newsDescription: String,
     private var newsContent: String,
     private var newsTime: String,
-    private var newsIsBookmarked: Boolean
+    private var newsIsBookmarked: Boolean,
+    private var newsViewModel: NewsViewModel
 ) : Fragment() {
 
     private lateinit var mContext: Context
@@ -33,15 +39,18 @@ class NewsFragment(
     private lateinit var tvContent: TextView
     private lateinit var fabShare: FloatingActionButton
     private lateinit var fabBookmark: FloatingActionButton
+    private lateinit var clNewsFragmentRoot: ConstraintLayout
 
     fun newInstance(): NewsFragment {
         return NewsFragment(
             newsImage,
+            newsURL,
             newsHeading,
             newsDescription,
             newsContent,
             newsTime,
-            newsIsBookmarked
+            newsIsBookmarked,
+            newsViewModel
         )
     }
 
@@ -71,6 +80,7 @@ class NewsFragment(
         tvReadMore = view.findViewById(R.id.tvReadMore)
         fabShare = view.findViewById(R.id.fabShare)
         fabBookmark = view.findViewById(R.id.fabBookmark)
+        clNewsFragmentRoot = view.findViewById(R.id.clNewsFragmentRoot)
 
         Glide.with(mContext).load(newsImage).placeholder(R.drawable.placeholder_image)
             .into(ivSingleNews1)
@@ -84,11 +94,23 @@ class NewsFragment(
 
     private fun clickListeners() {
         fabBookmark.setOnClickListener {
+            Snackbar.make(clNewsFragmentRoot, "Bookmark Removed.", Snackbar.LENGTH_SHORT).show()
             newsIsBookmarked = if (newsIsBookmarked) {
-                Toast.makeText(mContext, "BookMark Removed", Toast.LENGTH_SHORT).show()
+                newsViewModel.deleteBookmarks(heading = newsHeading)
                 false
             } else {
-                Toast.makeText(mContext, "BookMark Added", Toast.LENGTH_SHORT).show()
+                Snackbar.make(clNewsFragmentRoot, "Bookmark Added.", Snackbar.LENGTH_SHORT).show()
+                newsViewModel.insertBookmarks(
+                    News(
+                        newsImage,
+                        newsURL,
+                        newsHeading,
+                        newsDescription,
+                        newsContent,
+                        newsTime,
+                        !newsIsBookmarked
+                    )
+                )
                 true
             }
         }

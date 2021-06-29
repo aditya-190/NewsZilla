@@ -12,12 +12,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
+import com.bhardwaj.newszilla.repository.model.News
+import com.bhardwaj.newszilla.utils.Common
 import com.bhardwaj.newszilla.view.activities.ActivityBookmark
 import com.bhardwaj.newszilla.view.activities.ActivityMain
 import com.bhardwaj.newszilla.view.adapter.TopicsAdapter
-import com.bhardwaj.newszilla.utils.Common
-import com.bhardwaj.newszilla.repository.model.News
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DiscoverFragment : Fragment() {
 

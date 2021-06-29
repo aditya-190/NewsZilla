@@ -2,18 +2,20 @@ package com.bhardwaj.newszilla.view.activities
 
 import android.content.Context
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.bhardwaj.newszilla.R
+import com.bhardwaj.newszilla.utils.Common
+import com.bhardwaj.newszilla.utils.NewsZillaInstance
 import com.bhardwaj.newszilla.view.adapter.SingleNewsFragmentAdapter
 import com.bhardwaj.newszilla.view.fragments.*
-import com.bhardwaj.newszilla.utils.Common
+import com.bhardwaj.newszilla.viewmodel.NewsViewModel
 
 class ActivitySingleNews : AppCompatActivity() {
 
     private lateinit var mContext: Context
     private lateinit var singleNewsPageAdapter: SingleNewsFragmentAdapter
-
     private lateinit var newsImage: String
     private lateinit var newsURL: String
     private lateinit var newsHeading: String
@@ -21,6 +23,9 @@ class ActivitySingleNews : AppCompatActivity() {
     private lateinit var newsContent: String
     private lateinit var newsTime: String
     private var newsIsBookmarked: Boolean = false
+    private val newsViewModel: NewsViewModel by viewModels {
+        NewsViewModel.NewsViewModelFactory((application as NewsZillaInstance).repository)
+    }
 
     companion object {
         lateinit var vpActivitySingleNews: ViewPager2
@@ -35,7 +40,6 @@ class ActivitySingleNews : AppCompatActivity() {
 
     private fun initialise() {
         mContext = this@ActivitySingleNews
-
         newsImage = intent.getStringExtra("newsImage").toString()
         newsURL = intent.getStringExtra("newsURL").toString()
         newsHeading = intent.getStringExtra("newsHeading").toString()
@@ -49,11 +53,13 @@ class ActivitySingleNews : AppCompatActivity() {
         singleNewsPageAdapter.addFragment(
             NewsFragment(
                 newsImage,
+                newsURL,
                 newsHeading,
                 newsDescription,
                 newsContent,
                 newsTime,
-                newsIsBookmarked
+                newsIsBookmarked,
+                newsViewModel
             ).newInstance()
         )
         singleNewsPageAdapter.addFragment(FullNewsFragment(newsURL).newInstance())

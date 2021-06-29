@@ -42,7 +42,13 @@ class Common {
             for (i in 0 until 10) {
                 newsList.add(
                     News(
-                        "", "https://www.geeksforgeeks.org/how-to-use-custom-chrome-tabs-in-android/", "News", "1", "1", "08:00 AM", false
+                        "",
+                        "https://www.geeksforgeeks.org/how-to-use-custom-chrome-tabs-in-android/",
+                        "News",
+                        "1",
+                        "1",
+                        "08:00 AM",
+                        false
                     )
                 )
             }

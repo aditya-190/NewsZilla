@@ -8,8 +8,8 @@ import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.view.adapter.AllStoriesAdapter
 import com.bhardwaj.newszilla.repository.model.News
+import com.bhardwaj.newszilla.view.adapter.AllStoriesAdapter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

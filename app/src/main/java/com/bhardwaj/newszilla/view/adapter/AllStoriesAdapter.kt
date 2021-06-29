@@ -10,8 +10,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.view.activities.ActivitySingleNews
 import com.bhardwaj.newszilla.repository.model.News
+import com.bhardwaj.newszilla.view.activities.ActivitySingleNews
 import com.bumptech.glide.Glide
 
 class AllStoriesAdapter(var mContext: Context, private var topStoryList: ArrayList<News>) :

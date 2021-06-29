@@ -4,10 +4,15 @@ import android.app.Application
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
+import com.bhardwaj.newszilla.repository.NewsRepository
+import com.bhardwaj.newszilla.repository.model.NewsDatabase
 
 class NewsZillaInstance : Application() {
 
     private var mRequestQueue: RequestQueue? = null
+
+    val database by lazy { NewsDatabase.getDatabase(this) }
+    val repository by lazy { NewsRepository(database.newsDao()) }
 
     override fun onCreate() {
         super.onCreate()

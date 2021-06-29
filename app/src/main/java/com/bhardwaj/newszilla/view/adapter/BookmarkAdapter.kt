@@ -10,8 +10,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.view.activities.ActivitySingleNews
 import com.bhardwaj.newszilla.repository.model.News
+import com.bhardwaj.newszilla.view.activities.ActivitySingleNews
 import com.bumptech.glide.Glide
 
 class BookmarkAdapter(var mContext: Context, private var newsList: ArrayList<News>) :
@@ -56,5 +56,11 @@ class BookmarkAdapter(var mContext: Context, private var newsList: ArrayList<New
 
     override fun getItemCount(): Int {
         return newsList.size
+    }
+
+    fun updateBookmarksList(updatedNewsList: List<News>) {
+        newsList.clear()
+        newsList.addAll(updatedNewsList)
+        notifyDataSetChanged()
     }
 }

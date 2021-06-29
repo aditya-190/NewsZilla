@@ -1,11 +1,17 @@
 package com.bhardwaj.newszilla.repository.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "news_table")
 data class News(
-    var newsImageURL: String,
-    var newsURL: String,
-    var newsHeading: String,
-    var newsDescription: String,
-    var newsContent: String,
-    var newsTime: String,
-    var newsIsBookmarked: Boolean,
+    @ColumnInfo(name = "image") val newsImageURL: String,
+    @ColumnInfo(name = "news") val newsURL: String,
+    @PrimaryKey @ColumnInfo(name = "heading") val newsHeading: String,
+    @ColumnInfo(name = "description") val newsDescription: String,
+    @ColumnInfo(name = "content") val newsContent: String,
+    @ColumnInfo(name = "time") val newsTime: String,
+    @ColumnInfo(name = "bookmarked", defaultValue = "0") val newsIsBookmarked: Boolean,
 )
+

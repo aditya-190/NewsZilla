@@ -3,18 +3,17 @@ package com.bhardwaj.newszilla.view.activities
 import android.content.Context
 import android.os.Bundle
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.view.adapter.BookmarkAdapter
-import com.bhardwaj.newszilla.utils.Common
 import com.bhardwaj.newszilla.repository.model.News
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.bhardwaj.newszilla.utils.NewsZillaInstance
+import com.bhardwaj.newszilla.view.adapter.BookmarkAdapter
+import com.bhardwaj.newszilla.viewmodel.NewsViewModel
 
 class ActivityBookmark : AppCompatActivity() {
 
@@ -25,6 +24,9 @@ class ActivityBookmark : AppCompatActivity() {
     private lateinit var bookmarkLists: ArrayList<News>
     private lateinit var bookmarkAdapter: BookmarkAdapter
     private lateinit var rvBookmarks: RecyclerView
+    private val newsViewModel: NewsViewModel by viewModels {
+        NewsViewModel.NewsViewModelFactory((application as NewsZillaInstance).repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,6 @@ class ActivityBookmark : AppCompatActivity() {
         initialise()
         clickListeners()
         setUpAdapters()
-        getBookMarkFromDB()
     }
 
     private fun initialise() {
@@ -54,16 +55,9 @@ class ActivityBookmark : AppCompatActivity() {
             LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
         bookmarkAdapter = BookmarkAdapter(mContext, bookmarkLists)
         rvBookmarks.adapter = bookmarkAdapter
-    }
 
-    private fun getBookMarkFromDB() {
-        Common.checkConnection(mContext)
-        GlobalScope.launch(Dispatchers.IO) {
-            bookmarkLists.clear()
-            bookmarkLists.addAll(Common.getBookmarks())
-            withContext(Dispatchers.Main) {
-                bookmarkAdapter.notifyDataSetChanged()
-            }
+        newsViewModel.getBookmarks.observe(this) { bookmarkedNews ->
+            bookmarkedNews?.let { bookmarkAdapter.updateBookmarksList(it) }
         }
     }
 }

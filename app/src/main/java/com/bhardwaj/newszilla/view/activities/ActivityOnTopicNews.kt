@@ -8,9 +8,9 @@ import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.view.adapter.OnTopicNewsAdapter
-import com.bhardwaj.newszilla.utils.Common
 import com.bhardwaj.newszilla.repository.model.News
+import com.bhardwaj.newszilla.utils.Common
+import com.bhardwaj.newszilla.view.adapter.OnTopicNewsAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
