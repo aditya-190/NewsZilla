@@ -1,4 +1,4 @@
-package com.bhardwaj.newszilla.activities
+package com.bhardwaj.newszilla.view.activities
 
 import android.content.Context
 import android.os.Bundle
@@ -8,8 +8,8 @@ import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.adapters.AllStoriesAdapter
-import com.bhardwaj.newszilla.utils.News
+import com.bhardwaj.newszilla.view.adapter.AllStoriesAdapter
+import com.bhardwaj.newszilla.repository.model.News
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

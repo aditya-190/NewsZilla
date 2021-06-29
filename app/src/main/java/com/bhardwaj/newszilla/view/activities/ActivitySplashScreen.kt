@@ -1,4 +1,4 @@
-package com.bhardwaj.newszilla.activities
+package com.bhardwaj.newszilla.view.activities
 
 import android.content.Context
 import android.content.Intent

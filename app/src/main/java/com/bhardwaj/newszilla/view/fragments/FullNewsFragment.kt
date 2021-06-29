@@ -1,4 +1,4 @@
-package com.bhardwaj.newszilla.fragments
+package com.bhardwaj.newszilla.view.fragments
 
 import android.content.Context
 import android.net.Uri

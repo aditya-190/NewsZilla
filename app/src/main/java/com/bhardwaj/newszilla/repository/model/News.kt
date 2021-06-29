@@ -1,4 +1,4 @@
-package com.bhardwaj.newszilla.utils
+package com.bhardwaj.newszilla.repository.model
 
 data class News(
     var newsImageURL: String,

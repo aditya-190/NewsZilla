@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.bhardwaj.newszilla.R
+import com.bhardwaj.newszilla.repository.model.News
 
 class Common {
     companion object {

@@ -1,4 +1,4 @@
-package com.bhardwaj.newszilla.fragments
+package com.bhardwaj.newszilla.view.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -14,13 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.activities.ActivityAllStories
-import com.bhardwaj.newszilla.activities.ActivityMain.Companion.vpActivityMain
-import com.bhardwaj.newszilla.adapters.NewsAdapter
-import com.bhardwaj.newszilla.adapters.Top5HeadingViewPager
-import com.bhardwaj.newszilla.adapters.TopStoryAdapter
+import com.bhardwaj.newszilla.view.activities.ActivityAllStories
+import com.bhardwaj.newszilla.view.activities.ActivityMain.Companion.vpActivityMain
+import com.bhardwaj.newszilla.view.adapter.NewsAdapter
+import com.bhardwaj.newszilla.view.adapter.Top5HeadingViewPager
+import com.bhardwaj.newszilla.view.adapter.TopStoryAdapter
 import com.bhardwaj.newszilla.utils.Common
-import com.bhardwaj.newszilla.utils.News
+import com.bhardwaj.newszilla.repository.model.News
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

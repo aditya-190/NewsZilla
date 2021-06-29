@@ -1,4 +1,4 @@
-package com.bhardwaj.newszilla.adapters
+package com.bhardwaj.newszilla.view.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

@@ -1,4 +1,4 @@
-package com.bhardwaj.newszilla.fragments
+package com.bhardwaj.newszilla.view.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -12,11 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.activities.ActivityBookmark
-import com.bhardwaj.newszilla.activities.ActivityMain
-import com.bhardwaj.newszilla.adapters.TopicsAdapter
+import com.bhardwaj.newszilla.view.activities.ActivityBookmark
+import com.bhardwaj.newszilla.view.activities.ActivityMain
+import com.bhardwaj.newszilla.view.adapter.TopicsAdapter
 import com.bhardwaj.newszilla.utils.Common
-import com.bhardwaj.newszilla.utils.News
+import com.bhardwaj.newszilla.repository.model.News
 import kotlinx.coroutines.*
 
 class DiscoverFragment : Fragment() {

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Newszilla">
         <activity
-            android:name=".activities.ActivitySplashScreen"
+            android:name="com.bhardwaj.newszilla.view.activities.ActivitySplashScreen"
             android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ActivityMain" />
-        <activity android:name=".activities.ActivityAllStories" />
-        <activity android:name=".activities.ActivityBookmark" />
-        <activity android:name=".activities.ActivityOnTopicNews" />
-        <activity android:name=".activities.ActivitySingleNews" />
+        <activity android:name="com.bhardwaj.newszilla.view.activities.ActivityMain" />
+        <activity android:name="com.bhardwaj.newszilla.view.activities.ActivityAllStories" />
+        <activity android:name="com.bhardwaj.newszilla.view.activities.ActivityBookmark" />
+        <activity android:name="com.bhardwaj.newszilla.view.activities.ActivityOnTopicNews" />
+        <activity android:name="com.bhardwaj.newszilla.view.activities.ActivitySingleNews" />
     </application>
 
 </manifest>

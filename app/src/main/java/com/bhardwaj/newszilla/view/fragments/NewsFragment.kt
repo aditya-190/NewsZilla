@@ -1,4 +1,4 @@
-package com.bhardwaj.newszilla.fragments
+package com.bhardwaj.newszilla.view.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.activities.ActivitySingleNews.Companion.vpActivitySingleNews
+import com.bhardwaj.newszilla.view.activities.ActivitySingleNews.Companion.vpActivitySingleNews
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 

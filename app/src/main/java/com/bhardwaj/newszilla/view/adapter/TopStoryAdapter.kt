@@ -1,4 +1,4 @@
-package com.bhardwaj.newszilla.adapters
+package com.bhardwaj.newszilla.view.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -10,14 +10,14 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.activities.ActivitySingleNews
-import com.bhardwaj.newszilla.utils.News
+import com.bhardwaj.newszilla.view.activities.ActivitySingleNews
+import com.bhardwaj.newszilla.repository.model.News
 import com.bumptech.glide.Glide
 
-class AllStoriesAdapter(var mContext: Context, private var topStoryList: ArrayList<News>) :
-    RecyclerView.Adapter<AllStoriesAdapter.AllStoriesViewHolder>() {
+class TopStoryAdapter(var mContext: Context, private var topStoryList: ArrayList<News>) :
+    RecyclerView.Adapter<TopStoryAdapter.TopStoryViewHolder>() {
 
-    inner class AllStoriesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class TopStoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var ivTopStoryImage: AppCompatImageView = view.findViewById(R.id.ivTopStoryImage)
         var acTvStoryName: TextView = view.findViewById(R.id.acTvStoryName)
         var clStoryRootLayout: ConstraintLayout = view.findViewById(R.id.clStoryRootLayout)
@@ -26,13 +26,13 @@ class AllStoriesAdapter(var mContext: Context, private var topStoryList: ArrayLi
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): AllStoriesViewHolder {
-        return AllStoriesViewHolder(
-            LayoutInflater.from(mContext).inflate(R.layout.single_all_story_item, parent, false)
+    ): TopStoryViewHolder {
+        return TopStoryViewHolder(
+            LayoutInflater.from(mContext).inflate(R.layout.single_story_item, parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: AllStoriesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TopStoryViewHolder, position: Int) {
         val currentPosition = topStoryList[position]
 
         Glide.with(mContext).load(currentPosition.newsImageURL)

@@ -1,12 +1,12 @@
-package com.bhardwaj.newszilla.activities
+package com.bhardwaj.newszilla.view.activities
 
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.adapters.SingleNewsFragmentAdapter
-import com.bhardwaj.newszilla.fragments.*
+import com.bhardwaj.newszilla.view.adapter.SingleNewsFragmentAdapter
+import com.bhardwaj.newszilla.view.fragments.*
 import com.bhardwaj.newszilla.utils.Common
 
 class ActivitySingleNews : AppCompatActivity() {

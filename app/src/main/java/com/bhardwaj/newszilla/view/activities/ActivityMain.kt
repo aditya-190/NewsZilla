@@ -1,13 +1,13 @@
-package com.bhardwaj.newszilla.activities
+package com.bhardwaj.newszilla.view.activities
 
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.adapters.MainPageFragmentAdapter
-import com.bhardwaj.newszilla.fragments.DiscoverFragment
-import com.bhardwaj.newszilla.fragments.HomeFragment
+import com.bhardwaj.newszilla.view.adapter.MainPageFragmentAdapter
+import com.bhardwaj.newszilla.view.fragments.DiscoverFragment
+import com.bhardwaj.newszilla.view.fragments.HomeFragment
 import com.google.android.material.snackbar.Snackbar
 
 class ActivityMain : AppCompatActivity() {

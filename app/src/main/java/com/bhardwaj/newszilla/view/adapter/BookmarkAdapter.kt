@@ -1,4 +1,4 @@
-package com.bhardwaj.newszilla.adapters
+package com.bhardwaj.newszilla.view.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -10,30 +10,30 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.activities.ActivitySingleNews
-import com.bhardwaj.newszilla.utils.News
+import com.bhardwaj.newszilla.view.activities.ActivitySingleNews
+import com.bhardwaj.newszilla.repository.model.News
 import com.bumptech.glide.Glide
 
-class NewsAdapter(var mContext: Context, private var newsList: ArrayList<News>) :
-    RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class BookmarkAdapter(var mContext: Context, private var newsList: ArrayList<News>) :
+    RecyclerView.Adapter<BookmarkAdapter.BookmarkViewHolder>() {
 
-    inner class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class BookmarkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var aivNewsImageURL: AppCompatImageView = view.findViewById(R.id.aivNewsImageURL)
         var acTvNewsHeading: AppCompatTextView = view.findViewById(R.id.acTvNewsHeading)
         var acTvNewsDescription: AppCompatTextView = view.findViewById(R.id.acTvNewsDescription)
-        var clNewsRootLayout: ConstraintLayout = view.findViewById(R.id.clNewsRootLayout)
+        var clBookmarkRootLayout: ConstraintLayout = view.findViewById(R.id.clBookmarkRootLayout)
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): NewsViewHolder {
-        return NewsViewHolder(
-            LayoutInflater.from(mContext).inflate(R.layout.single_news_item, parent, false)
+    ): BookmarkViewHolder {
+        return BookmarkViewHolder(
+            LayoutInflater.from(mContext).inflate(R.layout.single_bookmark_item, parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BookmarkViewHolder, position: Int) {
         val currentPosition = newsList[position]
 
         Glide.with(mContext).load(currentPosition.newsImageURL)
@@ -41,7 +41,7 @@ class NewsAdapter(var mContext: Context, private var newsList: ArrayList<News>) 
         holder.acTvNewsHeading.text = currentPosition.newsHeading
         holder.acTvNewsDescription.text = currentPosition.newsDescription
 
-        holder.clNewsRootLayout.setOnClickListener {
+        holder.clBookmarkRootLayout.setOnClickListener {
             val intent = Intent(mContext, ActivitySingleNews::class.java)
             intent.putExtra("newsImage", currentPosition.newsImageURL)
             intent.putExtra("newsURL", currentPosition.newsURL)

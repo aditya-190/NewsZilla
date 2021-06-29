@@ -1,4 +1,4 @@
-package com.bhardwaj.newszilla.activities
+package com.bhardwaj.newszilla.view.activities
 
 import android.content.Context
 import android.os.Bundle
@@ -8,43 +8,39 @@ import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.adapters.OnTopicNewsAdapter
+import com.bhardwaj.newszilla.view.adapter.BookmarkAdapter
 import com.bhardwaj.newszilla.utils.Common
-import com.bhardwaj.newszilla.utils.News
+import com.bhardwaj.newszilla.repository.model.News
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ActivityOnTopicNews : AppCompatActivity() {
+class ActivityBookmark : AppCompatActivity() {
 
     private lateinit var mContext: Context
     private lateinit var tvPageBack: TextView
-    private lateinit var tvTopicName: TextView
-    private lateinit var nsvOnTopicNewsRoot: NestedScrollView
+    private lateinit var nsvBookmarkRoot: NestedScrollView
 
-    private lateinit var onTopicNewsLists: ArrayList<News>
-    private lateinit var onTopicNewsAdapter: OnTopicNewsAdapter
-    private lateinit var rvOnTopicNews: RecyclerView
+    private lateinit var bookmarkLists: ArrayList<News>
+    private lateinit var bookmarkAdapter: BookmarkAdapter
+    private lateinit var rvBookmarks: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_on_topic_news)
+        setContentView(R.layout.activity_bookmark)
         initialise()
         clickListeners()
         setUpAdapters()
-        getOnTopicNewsFromAPI()
+        getBookMarkFromDB()
     }
 
     private fun initialise() {
-        mContext = this@ActivityOnTopicNews
-        onTopicNewsLists = ArrayList()
-        tvTopicName = findViewById(R.id.tvTopicName)
+        mContext = this@ActivityBookmark
+        bookmarkLists = ArrayList()
         tvPageBack = findViewById(R.id.tvPageBack)
-        nsvOnTopicNewsRoot = findViewById(R.id.nsvOnTopicNewsRoot)
-        rvOnTopicNews = findViewById(R.id.rvOnTopicNews)
-
-        tvTopicName.text = intent.getStringExtra("topicName")
+        nsvBookmarkRoot = findViewById(R.id.nsvBookmarkRoot)
+        rvBookmarks = findViewById(R.id.rvBookmarks)
     }
 
     private fun clickListeners() {
@@ -54,20 +50,19 @@ class ActivityOnTopicNews : AppCompatActivity() {
     }
 
     private fun setUpAdapters() {
-        rvOnTopicNews.layoutManager =
+        rvBookmarks.layoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
-        onTopicNewsAdapter = OnTopicNewsAdapter(mContext, onTopicNewsLists)
-        rvOnTopicNews.adapter = onTopicNewsAdapter
+        bookmarkAdapter = BookmarkAdapter(mContext, bookmarkLists)
+        rvBookmarks.adapter = bookmarkAdapter
     }
 
-    private fun getOnTopicNewsFromAPI() {
+    private fun getBookMarkFromDB() {
         Common.checkConnection(mContext)
-
         GlobalScope.launch(Dispatchers.IO) {
-            onTopicNewsLists.clear()
-            onTopicNewsLists.addAll(Common.getOnTopicNews())
+            bookmarkLists.clear()
+            bookmarkLists.addAll(Common.getBookmarks())
             withContext(Dispatchers.Main) {
-                onTopicNewsAdapter.notifyDataSetChanged()
+                bookmarkAdapter.notifyDataSetChanged()
             }
         }
     }
