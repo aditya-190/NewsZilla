@@ -17,9 +17,15 @@ interface NewsDao {
     @Query("SELECT * FROM news_table WHERE bookmarked = 1 ORDER BY time DESC")
     fun getBookmarks(): LiveData<List<News>>
 
-    @Query("SELECT * FROM news_table ORDER BY time DESC")
+    @Query("SELECT * FROM news_table WHERE type = 'news' ORDER BY time DESC")
     fun getNews(): LiveData<List<News>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertNews(news: News)
+    @Query("SELECT * FROM news_table WHERE type = 'story' ORDER BY time DESC")
+    fun getStory(): LiveData<List<News>>
+
+    @Query("SELECT * FROM news_table WHERE type = 'heading' ORDER BY time DESC")
+    fun getHeadlines(): LiveData<List<News>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNews(newsList: ArrayList<News>)
 }

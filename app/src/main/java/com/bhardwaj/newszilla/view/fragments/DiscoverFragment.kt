@@ -17,11 +17,7 @@ import com.bhardwaj.newszilla.utils.Common
 import com.bhardwaj.newszilla.view.activities.ActivityBookmark
 import com.bhardwaj.newszilla.view.activities.ActivityMain
 import com.bhardwaj.newszilla.view.adapter.TopicsAdapter
-import com.bhardwaj.newszilla.viewmodel.NewsViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.bhardwaj.newszilla.repository.NewsViewModel
 
 class DiscoverFragment(private var newsViewModel: NewsViewModel) : Fragment() {
 
@@ -80,12 +76,5 @@ class DiscoverFragment(private var newsViewModel: NewsViewModel) : Fragment() {
 
     private fun getTopicsFromAPI() {
         Common.checkConnection(mContext)
-        GlobalScope.launch(Dispatchers.IO) {
-            topicsList.clear()
-            topicsList.addAll(Common.getNews())
-            withContext(Dispatchers.Main) {
-                topicsAdapter.notifyDataSetChanged()
-            }
-        }
     }
 }

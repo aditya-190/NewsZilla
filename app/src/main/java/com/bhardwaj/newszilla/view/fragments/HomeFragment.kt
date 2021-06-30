@@ -14,21 +14,20 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.bhardwaj.newszilla.R
-import com.bhardwaj.newszilla.repository.api.NetworkRequest
+import com.bhardwaj.newszilla.repository.NewsViewModel
 import com.bhardwaj.newszilla.repository.model.News
 import com.bhardwaj.newszilla.utils.Common
+import com.bhardwaj.newszilla.utils.Common.Companion.fetchNews
 import com.bhardwaj.newszilla.utils.NewsZillaInstance
 import com.bhardwaj.newszilla.view.activities.ActivityAllStories
 import com.bhardwaj.newszilla.view.activities.ActivityMain.Companion.vpActivityMain
 import com.bhardwaj.newszilla.view.adapter.NewsAdapter
 import com.bhardwaj.newszilla.view.adapter.Top5HeadingViewPager
 import com.bhardwaj.newszilla.view.adapter.TopStoryAdapter
-import com.bhardwaj.newszilla.viewmodel.NewsViewModel
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
 
@@ -41,6 +40,7 @@ class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
 
     private lateinit var top5HeadingLists: ArrayList<News>
     private lateinit var vpTop5News: ViewPager2
+    private lateinit var vpTop5NewsAdapter: Top5HeadingViewPager
     private lateinit var tvSeeAllStories: TextView
 
     private lateinit var topStoriesLists: ArrayList<News>
@@ -88,7 +88,8 @@ class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
     }
 
     private fun setUpAdapters() {
-        vpTop5News.adapter = Top5HeadingViewPager(mContext, top5HeadingLists)
+        vpTop5NewsAdapter = Top5HeadingViewPager(mContext, top5HeadingLists)
+        vpTop5News.adapter = vpTop5NewsAdapter
 
         rvTopStories.layoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
@@ -122,32 +123,46 @@ class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
     }
 
     private fun getNewsFromAPI() {
-        mainSwipeRefresh.isRefreshing = true
         Common.checkConnection(mContext)
 
         GlobalScope.launch(Dispatchers.IO) {
-            NetworkRequest.fetchNews(newsZillaInstance, newsViewModel)
+            fetchNews(
+                "https://newsapi.org/v2/top-headlines?country=in&pageSize=20&apiKey=a09d149c35f34c0eb39485201d16e546",
+                "heading",
+                newsZillaInstance,
+                newsViewModel
+            )
         }
 
         GlobalScope.launch(Dispatchers.IO) {
-            top5HeadingLists.clear()
-            top5HeadingLists.addAll(Common.getTop5Headings())
-            withContext(Dispatchers.Main) {
-                vpTop5News.adapter?.notifyDataSetChanged()
-            }
+            fetchNews(
+                "https://newsapi.org/v2/everything?language=en&q=computer&sortBy=popularity&pageSize=100&apiKey=a09d149c35f34c0eb39485201d16e546",
+                "news",
+                newsZillaInstance,
+                newsViewModel
+            )
         }
 
         GlobalScope.launch(Dispatchers.IO) {
-            topStoriesLists.clear()
-            topStoriesLists.addAll(Common.getTopStories())
-            withContext(Dispatchers.Main) {
-                topStoryAdapter.notifyDataSetChanged()
-            }
+            fetchNews(
+                "https://newsapi.org/v2/top-headlines?country=in&pageSize=20&page=2&apiKey=a09d149c35f34c0eb39485201d16e546",
+                "story",
+                newsZillaInstance,
+                newsViewModel
+            )
         }
 
-        newsViewModel.getNews.observe(viewLifecycleOwner) { allNews ->
-            allNews?.let { newsAdapter.updateNewsList(allNews) }
+        newsViewModel.getNews.observe(viewLifecycleOwner) { news ->
+            news?.let { newsAdapter.updateNewsList(news) }
             mainSwipeRefresh.isRefreshing = false
+        }
+
+        newsViewModel.getStory.observe(viewLifecycleOwner) { story ->
+            story?.let { topStoryAdapter.updateStoryList(story) }
+        }
+
+        newsViewModel.getHeadlines.observe(viewLifecycleOwner) { heading ->
+            heading?.let { vpTop5NewsAdapter.updateHeadingList(heading) }
         }
     }
 }

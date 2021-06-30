@@ -12,7 +12,7 @@ import com.bhardwaj.newszilla.R
 import com.bhardwaj.newszilla.repository.model.News
 import com.bhardwaj.newszilla.utils.NewsZillaInstance
 import com.bhardwaj.newszilla.view.adapter.BookmarkAdapter
-import com.bhardwaj.newszilla.viewmodel.NewsViewModel
+import com.bhardwaj.newszilla.repository.NewsViewModel
 
 class ActivityBookmark : AppCompatActivity() {
 

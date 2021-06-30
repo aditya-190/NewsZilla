@@ -1,7 +1,6 @@
 package com.bhardwaj.newszilla.view.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
 import com.bhardwaj.newszilla.repository.model.News
-import com.bhardwaj.newszilla.view.activities.ActivitySingleNews
+import com.bhardwaj.newszilla.utils.Common
 import com.bumptech.glide.Glide
 
 class Top5HeadingViewPager(
@@ -41,21 +40,17 @@ class Top5HeadingViewPager(
         holder.acTvNewsDescription.text = currentPosition.newsHeading
 
         holder.clTop5HeadingRootLayout.setOnClickListener {
-            val intent = Intent(mContext, ActivitySingleNews::class.java)
-            intent.putExtra("newsImage", currentPosition.newsImageURL)
-            intent.putExtra("newsURL", currentPosition.newsURL)
-            intent.putExtra("newsHeading", currentPosition.newsHeading)
-            intent.putExtra("newsDescription", currentPosition.newsDescription)
-            intent.putExtra("newsContent", currentPosition.newsContent)
-            intent.putExtra("newsTime", currentPosition.newsTime)
-            intent.putExtra("newsSourceName", currentPosition.newsSourceName)
-            intent.putExtra("newsAuthor", currentPosition.newsAuthor)
-            intent.putExtra("newsIsBookmarked", currentPosition.newsIsBookmarked)
-            mContext.startActivity(intent)
+            Common.openNewsActivity(mContext, currentPosition)
         }
     }
 
     override fun getItemCount(): Int {
         return top5HeadingList.size
+    }
+
+    fun updateHeadingList(updatedHeadingList: List<News>) {
+        top5HeadingList.clear()
+        top5HeadingList.addAll(updatedHeadingList)
+        notifyDataSetChanged()
     }
 }

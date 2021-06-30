@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
 import com.bhardwaj.newszilla.repository.model.News
+import com.bhardwaj.newszilla.utils.Common
 import com.bhardwaj.newszilla.view.activities.ActivitySingleNews
 import com.bumptech.glide.Glide
 
@@ -42,17 +43,7 @@ class BookmarkAdapter(var mContext: Context, private var newsList: ArrayList<New
         holder.acTvNewsDescription.text = currentPosition.newsDescription
 
         holder.clBookmarkRootLayout.setOnClickListener {
-            val intent = Intent(mContext, ActivitySingleNews::class.java)
-            intent.putExtra("newsImage", currentPosition.newsImageURL)
-            intent.putExtra("newsURL", currentPosition.newsURL)
-            intent.putExtra("newsHeading", currentPosition.newsHeading)
-            intent.putExtra("newsDescription", currentPosition.newsDescription)
-            intent.putExtra("newsContent", currentPosition.newsContent)
-            intent.putExtra("newsTime", currentPosition.newsTime)
-            intent.putExtra("newsSourceName", currentPosition.newsSourceName)
-            intent.putExtra("newsAuthor", currentPosition.newsAuthor)
-            intent.putExtra("newsIsBookmarked", currentPosition.newsIsBookmarked)
-            mContext.startActivity(intent)
+            Common.openNewsActivity(mContext, currentPosition)
         }
     }
 

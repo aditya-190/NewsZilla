@@ -10,7 +10,7 @@ import com.bhardwaj.newszilla.utils.NewsZillaInstance
 import com.bhardwaj.newszilla.view.adapter.MainPageFragmentAdapter
 import com.bhardwaj.newszilla.view.fragments.DiscoverFragment
 import com.bhardwaj.newszilla.view.fragments.HomeFragment
-import com.bhardwaj.newszilla.viewmodel.NewsViewModel
+import com.bhardwaj.newszilla.repository.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class ActivityMain : AppCompatActivity() {

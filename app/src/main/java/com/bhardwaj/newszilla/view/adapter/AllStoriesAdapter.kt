@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bhardwaj.newszilla.R
 import com.bhardwaj.newszilla.repository.model.News
+import com.bhardwaj.newszilla.utils.Common
 import com.bhardwaj.newszilla.view.activities.ActivitySingleNews
 import com.bumptech.glide.Glide
 
@@ -37,20 +38,10 @@ class AllStoriesAdapter(var mContext: Context, private var topStoryList: ArrayLi
 
         Glide.with(mContext).load(currentPosition.newsImageURL)
             .placeholder(R.drawable.placeholder_image).into(holder.ivTopStoryImage)
-        holder.acTvStoryName.text = currentPosition.newsHeading
+        holder.acTvStoryName.text = currentPosition.newsSourceName
 
         holder.clStoryRootLayout.setOnClickListener {
-            val intent = Intent(mContext, ActivitySingleNews::class.java)
-            intent.putExtra("newsImage", currentPosition.newsImageURL)
-            intent.putExtra("newsURL", currentPosition.newsURL)
-            intent.putExtra("newsHeading", currentPosition.newsHeading)
-            intent.putExtra("newsDescription", currentPosition.newsDescription)
-            intent.putExtra("newsContent", currentPosition.newsContent)
-            intent.putExtra("newsTime", currentPosition.newsTime)
-            intent.putExtra("newsSourceName", currentPosition.newsSourceName)
-            intent.putExtra("newsAuthor", currentPosition.newsAuthor)
-            intent.putExtra("newsIsBookmarked", currentPosition.newsIsBookmarked)
-            mContext.startActivity(intent)
+            Common.openNewsActivity(mContext, currentPosition)
         }
     }
 

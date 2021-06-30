@@ -62,13 +62,5 @@ class ActivityOnTopicNews : AppCompatActivity() {
 
     private fun getOnTopicNewsFromAPI() {
         Common.checkConnection(mContext)
-
-        GlobalScope.launch(Dispatchers.IO) {
-            onTopicNewsLists.clear()
-            onTopicNewsLists.addAll(Common.getOnTopicNews())
-            withContext(Dispatchers.Main) {
-                onTopicNewsAdapter.notifyDataSetChanged()
-            }
-        }
     }
 }

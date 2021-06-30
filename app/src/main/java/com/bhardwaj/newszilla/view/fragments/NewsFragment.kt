@@ -11,10 +11,10 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.bhardwaj.newszilla.R
+import com.bhardwaj.newszilla.repository.NewsViewModel
 import com.bhardwaj.newszilla.repository.model.News
 import com.bhardwaj.newszilla.utils.Common.Companion.convertTimeToLocale
 import com.bhardwaj.newszilla.view.activities.ActivitySingleNews.Companion.vpActivitySingleNews
-import com.bhardwaj.newszilla.viewmodel.NewsViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -29,6 +29,7 @@ class NewsFragment(
     private var newsSourceName: String,
     private var newsAuthor: String,
     private var newsIsBookmarked: Boolean,
+    private var newsType: String,
     private var newsViewModel: NewsViewModel
 ) : Fragment() {
 
@@ -55,6 +56,7 @@ class NewsFragment(
             newsSourceName,
             newsAuthor,
             newsIsBookmarked,
+            newsType,
             newsViewModel
         )
     }
@@ -89,8 +91,8 @@ class NewsFragment(
 
         Glide.with(mContext).load(newsImage).placeholder(R.drawable.placeholder_image)
             .into(ivSingleNews1)
-        Glide.with(mContext).load(newsImage).thumbnail().placeholder(R.drawable.placeholder_image)
-            .into(ivSingleNews2)
+        Glide.with(mContext).load(newsImage).centerCrop().override(12, 12).into(ivSingleNews2)
+
         tvNewsHeading.text = newsHeading
         tvDescription.text = newsDescription
         tvContent.text = newsContent
@@ -115,7 +117,8 @@ class NewsFragment(
                         newsTime = newsTime,
                         newsSourceName = newsSourceName,
                         newsAuthor = newsAuthor,
-                        newsIsBookmarked = !newsIsBookmarked
+                        newsIsBookmarked = !newsIsBookmarked,
+                        newsType = newsType
                     )
                 )
                 true

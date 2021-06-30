@@ -2,14 +2,22 @@ package com.bhardwaj.newszilla.utils
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
+import android.util.Log
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
 import com.bhardwaj.newszilla.R
+import com.bhardwaj.newszilla.repository.NewsViewModel
 import com.bhardwaj.newszilla.repository.model.News
+import com.bhardwaj.newszilla.view.activities.ActivitySingleNews
+import kotlinx.coroutines.Job
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+import kotlin.coroutines.suspendCoroutine
 
 class Common {
     companion object {
@@ -52,104 +60,71 @@ class Common {
             )
         }
 
-        fun getNews(): ArrayList<News> {
-            val newsList: ArrayList<News> = ArrayList()
-            for (i in 0 until 10) {
-                newsList.add(
-                    News(
-                        newsImageURL = "",
-                        newsURL = "",
-                        newsHeading = "",
-                        newsDescription = "",
-                        newsContent = "",
-                        newsTime = "",
-                        newsSourceName = "",
-                        newsAuthor = "",
-                        newsIsBookmarked = false
-                    )
-                )
-            }
-            return newsList
+        fun openNewsActivity(mContext: Context, currentPosition: News) {
+            val intent = Intent(mContext, ActivitySingleNews::class.java)
+            intent.putExtra("newsImage", currentPosition.newsImageURL)
+            intent.putExtra("newsURL", currentPosition.newsURL)
+            intent.putExtra("newsHeading", currentPosition.newsHeading)
+            intent.putExtra("newsDescription", currentPosition.newsDescription)
+            intent.putExtra("newsContent", currentPosition.newsContent)
+            intent.putExtra("newsTime", currentPosition.newsTime)
+            intent.putExtra("newsSourceName", currentPosition.newsSourceName)
+            intent.putExtra("newsAuthor", currentPosition.newsAuthor)
+            intent.putExtra("newsIsBookmarked", currentPosition.newsIsBookmarked)
+            intent.putExtra("newsType", currentPosition.newsType)
+            mContext.startActivity(intent)
         }
 
-        fun getTop5Headings(): ArrayList<News> {
-            val top5NewsList: ArrayList<News> = ArrayList()
-            for (i in 0 until 10) {
-                top5NewsList.add(
-                    News(
-                        newsImageURL = "",
-                        newsURL = "",
-                        newsHeading = "",
-                        newsDescription = "",
-                        newsContent = "",
-                        newsTime = "",
-                        newsSourceName = "",
-                        newsAuthor = "",
-                        newsIsBookmarked = false
-                    )
-                )
+        suspend fun fetchNews(
+            url: String,
+            newsType: String,
+            newsZillaInstance: NewsZillaInstance?,
+            newsViewModel: NewsViewModel
+        ) =
+            suspendCoroutine<Job> { cont ->
+                val stringRequest: StringRequest = object : StringRequest(
+                    Method.GET, url,
+                    Response.Listener { response ->
+                        val totalObject = JSONObject(response)
+                        val totalNews: ArrayList<News> = ArrayList()
+                        val allNews = totalObject.getJSONArray("articles")
+                        for (i in 0 until allNews.length()) {
+                            val singleObject = allNews.getJSONObject(i)
+                            val newsImageURL = singleObject.getString("urlToImage")
+                            val newsURL = singleObject.getString("url")
+                            val newsHeading = singleObject.getString("title")
+                            val newsDescription = singleObject.getString("description")
+                            val newsTime = singleObject.getString("publishedAt")
+                            val newsSourceName =
+                                singleObject.getJSONObject("source").getString("name")
+                            val newsAuthor = singleObject.getString("author")
+                            val newsContent = singleObject.getString("content")
+                            val singleNews = News(
+                                newsImageURL = newsImageURL,
+                                newsURL = newsURL,
+                                newsHeading = newsHeading,
+                                newsDescription = newsDescription,
+                                newsContent = newsContent,
+                                newsTime = newsTime,
+                                newsSourceName = newsSourceName,
+                                newsAuthor = newsAuthor,
+                                newsIsBookmarked = false,
+                                newsType = newsType
+                            )
+                            totalNews.add(singleNews)
+                        }
+                        newsViewModel.insertNews(totalNews)
+                    },
+                    Response.ErrorListener { error ->
+                        Log.d("Aditya", "Error when fetching News: $error")
+                    }) {
+                    override fun getHeaders(): MutableMap<String, String> {
+                        val params: HashMap<String, String> = HashMap()
+                        params["User-Agent"] = "Mozilla/5.0"
+                        return params
+                    }
+                }
+                newsZillaInstance?.addToRequestQueue(stringRequest)
             }
-            return top5NewsList
-        }
-
-        fun getTopStories(): ArrayList<News> {
-            val topStoryList: ArrayList<News> = ArrayList()
-            for (i in 0 until 10) {
-                topStoryList.add(
-                    News(
-                        newsImageURL = "",
-                        newsURL = "",
-                        newsHeading = "",
-                        newsDescription = "",
-                        newsContent = "",
-                        newsTime = "",
-                        newsSourceName = "",
-                        newsAuthor = "",
-                        newsIsBookmarked = false
-                    )
-                )
-            }
-            return topStoryList
-        }
-
-        fun getTopic(): ArrayList<News> {
-            val topicList: ArrayList<News> = ArrayList()
-            for (i in 0 until 10) {
-                topicList.add(
-                    News(
-                        newsImageURL = "",
-                        newsURL = "",
-                        newsHeading = "",
-                        newsDescription = "",
-                        newsContent = "",
-                        newsTime = "",
-                        newsSourceName = "",
-                        newsAuthor = "",
-                        newsIsBookmarked = false
-                    )
-                )
-            }
-            return topicList
-        }
-
-        fun getOnTopicNews(): ArrayList<News> {
-            val onTopicList: ArrayList<News> = ArrayList()
-            for (i in 0 until 10) {
-                onTopicList.add(
-                    News(
-                        newsImageURL = "",
-                        newsURL = "",
-                        newsHeading = "",
-                        newsDescription = "",
-                        newsContent = "",
-                        newsTime = "",
-                        newsSourceName = "",
-                        newsAuthor = "",
-                        newsIsBookmarked = false
-                    )
-                )
-            }
-            return onTopicList
-        }
     }
 }

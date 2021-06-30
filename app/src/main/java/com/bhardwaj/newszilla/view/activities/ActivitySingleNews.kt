@@ -10,7 +10,7 @@ import com.bhardwaj.newszilla.utils.Common
 import com.bhardwaj.newszilla.utils.NewsZillaInstance
 import com.bhardwaj.newszilla.view.adapter.SingleNewsFragmentAdapter
 import com.bhardwaj.newszilla.view.fragments.*
-import com.bhardwaj.newszilla.viewmodel.NewsViewModel
+import com.bhardwaj.newszilla.repository.NewsViewModel
 
 class ActivitySingleNews : AppCompatActivity() {
 
@@ -24,6 +24,7 @@ class ActivitySingleNews : AppCompatActivity() {
     private lateinit var newsTime: String
     private lateinit var newsSourceName: String
     private lateinit var newsAuthor: String
+    private lateinit var newsType: String
     private var newsIsBookmarked: Boolean = false
     private val newsViewModel: NewsViewModel by viewModels {
         NewsViewModel.NewsViewModelFactory((application as NewsZillaInstance).repository)
@@ -51,6 +52,7 @@ class ActivitySingleNews : AppCompatActivity() {
         newsSourceName = intent.getStringExtra("newsSourceName").toString()
         newsAuthor = intent.getStringExtra("newsAuthor").toString()
         newsIsBookmarked = intent.getBooleanExtra("newsIsBookmarked", false)
+        newsType = intent.getStringExtra("newsType").toString()
 
         vpActivitySingleNews = findViewById(R.id.vpActivitySingleNews)
         singleNewsPageAdapter = SingleNewsFragmentAdapter(supportFragmentManager, lifecycle)
@@ -65,7 +67,8 @@ class ActivitySingleNews : AppCompatActivity() {
                 newsSourceName,
                 newsAuthor,
                 newsIsBookmarked,
-                newsViewModel
+                newsType,
+                newsViewModel,
             ).newInstance()
         )
         singleNewsPageAdapter.addFragment(FullNewsFragment(newsURL).newInstance())
