@@ -59,4 +59,10 @@ class NewsAdapter(var mContext: Context, private var newsList: ArrayList<News>) 
     override fun getItemCount(): Int {
         return newsList.size
     }
+
+    fun updateNewsList(allNews: List<News>) {
+        newsList.clear()
+        newsList.addAll(allNews)
+        notifyDataSetChanged()
+    }
 }

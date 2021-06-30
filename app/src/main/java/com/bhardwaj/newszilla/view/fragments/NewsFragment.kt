@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.bhardwaj.newszilla.R
 import com.bhardwaj.newszilla.repository.model.News
+import com.bhardwaj.newszilla.utils.Common.Companion.convertTimeToLocale
 import com.bhardwaj.newszilla.view.activities.ActivitySingleNews.Companion.vpActivitySingleNews
 import com.bhardwaj.newszilla.viewmodel.NewsViewModel
 import com.bumptech.glide.Glide
@@ -88,12 +89,12 @@ class NewsFragment(
 
         Glide.with(mContext).load(newsImage).placeholder(R.drawable.placeholder_image)
             .into(ivSingleNews1)
-        Glide.with(mContext).load(newsImage).placeholder(R.drawable.placeholder_image)
+        Glide.with(mContext).load(newsImage).thumbnail().placeholder(R.drawable.placeholder_image)
             .into(ivSingleNews2)
         tvNewsHeading.text = newsHeading
         tvDescription.text = newsDescription
         tvContent.text = newsContent
-        tvDate.text = newsTime
+        tvDate.text = convertTimeToLocale(mContext, newsTime)
     }
 
     private fun clickListeners() {

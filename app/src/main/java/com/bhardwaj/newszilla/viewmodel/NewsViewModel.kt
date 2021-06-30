@@ -1,5 +1,6 @@
 package com.bhardwaj.newszilla.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -12,6 +13,7 @@ import kotlinx.coroutines.launch
 class NewsViewModel(private var repository: NewsRepository) : ViewModel() {
 
     val getBookmarks = repository.getBookmarks
+    val getNews = repository.getNews
 
     fun insertBookmarks(news: News) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertBookmark(news)
@@ -21,8 +23,8 @@ class NewsViewModel(private var repository: NewsRepository) : ViewModel() {
         repository.deleteBookmark(heading)
     }
 
-    fun getNews(newsZillaInstance: NewsZillaInstance) = viewModelScope.launch(Dispatchers.IO) {
-        repository.getNews(newsZillaInstance)
+    fun insertNews(news: News) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insertNews(news)
     }
 
     class NewsViewModelFactory(private val repository: NewsRepository) : ViewModelProvider.Factory {

@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.bhardwaj.newszilla.R
+import com.bhardwaj.newszilla.repository.api.NetworkRequest
 import com.bhardwaj.newszilla.repository.model.News
 import com.bhardwaj.newszilla.utils.Common
+import com.bhardwaj.newszilla.utils.NewsZillaInstance
 import com.bhardwaj.newszilla.view.activities.ActivityAllStories
 import com.bhardwaj.newszilla.view.activities.ActivityMain.Companion.vpActivityMain
 import com.bhardwaj.newszilla.view.adapter.NewsAdapter
@@ -31,6 +33,7 @@ import kotlinx.coroutines.withContext
 class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
 
     private lateinit var mContext: Context
+    private var newsZillaInstance: NewsZillaInstance? = null
     private lateinit var mainSwipeRefresh: SwipeRefreshLayout
 
     private lateinit var tvPageBack: TextView
@@ -71,6 +74,7 @@ class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
     }
 
     private fun initialise(view: View) {
+        newsZillaInstance = NewsZillaInstance.instances
         top5HeadingLists = ArrayList()
         topStoriesLists = ArrayList()
         newsLists = ArrayList()
@@ -122,6 +126,10 @@ class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
         Common.checkConnection(mContext)
 
         GlobalScope.launch(Dispatchers.IO) {
+            NetworkRequest.fetchNews(newsZillaInstance, newsViewModel)
+        }
+
+        GlobalScope.launch(Dispatchers.IO) {
             top5HeadingLists.clear()
             top5HeadingLists.addAll(Common.getTop5Headings())
             withContext(Dispatchers.Main) {
@@ -137,13 +145,9 @@ class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
             }
         }
 
-        GlobalScope.launch(Dispatchers.IO) {
-            newsLists.clear()
-            newsLists.addAll(Common.getNews())
-            withContext(Dispatchers.Main) {
-                newsAdapter.notifyDataSetChanged()
-                mainSwipeRefresh.isRefreshing = false
-            }
+        newsViewModel.getNews.observe(viewLifecycleOwner) { allNews ->
+            allNews?.let { newsAdapter.updateNewsList(allNews) }
+            mainSwipeRefresh.isRefreshing = false
         }
     }
 }

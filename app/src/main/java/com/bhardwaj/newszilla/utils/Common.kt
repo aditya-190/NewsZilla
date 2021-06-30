@@ -7,6 +7,9 @@ import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.bhardwaj.newszilla.R
 import com.bhardwaj.newszilla.repository.model.News
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class Common {
     companion object {
@@ -35,6 +38,18 @@ class Common {
                 mContext.getSystemService(AppCompatActivity.CONNECTIVITY_SERVICE) as ConnectivityManager
             val netInfo = connectivityManager.activeNetworkInfo
             return netInfo != null && netInfo.isConnected && netInfo.isAvailable
+        }
+
+        fun convertTimeToLocale(mContext: Context, time: String): String {
+            return SimpleDateFormat(
+                mContext.getString(R.string.date_format),
+                Locale.getDefault()
+            ).format(
+                SimpleDateFormat(
+                    mContext.getString(R.string.default_time_format),
+                    Locale.getDefault()
+                ).parse(time)!!
+            )
         }
 
         fun getNews(): ArrayList<News> {
