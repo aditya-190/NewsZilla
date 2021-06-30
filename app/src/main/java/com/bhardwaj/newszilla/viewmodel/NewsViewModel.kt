@@ -1,12 +1,10 @@
 package com.bhardwaj.newszilla.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.bhardwaj.newszilla.repository.NewsRepository
 import com.bhardwaj.newszilla.repository.model.News
-import com.bhardwaj.newszilla.utils.NewsZillaInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

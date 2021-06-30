@@ -53,7 +53,7 @@ interface NetworkRequest {
                     override fun getHeaders(): MutableMap<String, String> {
                         var params: HashMap<String, String> = HashMap()
                         params["User-Agent"] = "Mozilla/5.0"
-                        return  params
+                        return params
                     }
                 }
                 newsZillaInstance?.addToRequestQueue(stringRequest)

@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface NewsDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBookmark(news: News)
 
     @Query("UPDATE news_table SET bookmarked = 0 WHERE heading = :heading")
