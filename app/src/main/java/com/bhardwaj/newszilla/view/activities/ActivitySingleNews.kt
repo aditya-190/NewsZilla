@@ -22,6 +22,8 @@ class ActivitySingleNews : AppCompatActivity() {
     private lateinit var newsDescription: String
     private lateinit var newsContent: String
     private lateinit var newsTime: String
+    private lateinit var newsSourceName: String
+    private lateinit var newsAuthor: String
     private var newsIsBookmarked: Boolean = false
     private val newsViewModel: NewsViewModel by viewModels {
         NewsViewModel.NewsViewModelFactory((application as NewsZillaInstance).repository)
@@ -46,6 +48,8 @@ class ActivitySingleNews : AppCompatActivity() {
         newsDescription = intent.getStringExtra("newsDescription").toString()
         newsContent = intent.getStringExtra("newsContent").toString()
         newsTime = intent.getStringExtra("newsTime").toString()
+        newsSourceName = intent.getStringExtra("newsSourceName").toString()
+        newsAuthor = intent.getStringExtra("newsAuthor").toString()
         newsIsBookmarked = intent.getBooleanExtra("newsIsBookmarked", false)
 
         vpActivitySingleNews = findViewById(R.id.vpActivitySingleNews)
@@ -58,6 +62,8 @@ class ActivitySingleNews : AppCompatActivity() {
                 newsDescription,
                 newsContent,
                 newsTime,
+                newsSourceName,
+                newsAuthor,
                 newsIsBookmarked,
                 newsViewModel
             ).newInstance()

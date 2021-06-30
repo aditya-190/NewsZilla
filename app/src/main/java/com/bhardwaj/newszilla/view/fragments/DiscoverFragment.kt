@@ -17,12 +17,13 @@ import com.bhardwaj.newszilla.utils.Common
 import com.bhardwaj.newszilla.view.activities.ActivityBookmark
 import com.bhardwaj.newszilla.view.activities.ActivityMain
 import com.bhardwaj.newszilla.view.adapter.TopicsAdapter
+import com.bhardwaj.newszilla.viewmodel.NewsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DiscoverFragment : Fragment() {
+class DiscoverFragment(private var newsViewModel: NewsViewModel) : Fragment() {
 
     private lateinit var mContext: Context
     private lateinit var aciBookmark: AppCompatImageView
@@ -33,7 +34,7 @@ class DiscoverFragment : Fragment() {
     private lateinit var topicsAdapter: TopicsAdapter
 
     fun newInstance(): DiscoverFragment {
-        return DiscoverFragment()
+        return DiscoverFragment(newsViewModel)
     }
 
     override fun onAttach(context: Context) {

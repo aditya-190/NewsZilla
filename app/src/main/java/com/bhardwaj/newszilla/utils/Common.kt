@@ -42,13 +42,15 @@ class Common {
             for (i in 0 until 10) {
                 newsList.add(
                     News(
-                        "",
-                        "https://www.geeksforgeeks.org/how-to-use-custom-chrome-tabs-in-android/",
-                        "News",
-                        "1",
-                        "1",
-                        "08:00 AM",
-                        false
+                        newsImageURL = "",
+                        newsURL = "",
+                        newsHeading = "",
+                        newsDescription = "",
+                        newsContent = "",
+                        newsTime = "",
+                        newsSourceName = "",
+                        newsAuthor = "",
+                        newsIsBookmarked = false
                     )
                 )
             }
@@ -60,7 +62,15 @@ class Common {
             for (i in 0 until 10) {
                 top5NewsList.add(
                     News(
-                        "", "", "5 Top News", "2", "2", "08:00 AM", false
+                        newsImageURL = "",
+                        newsURL = "",
+                        newsHeading = "",
+                        newsDescription = "",
+                        newsContent = "",
+                        newsTime = "",
+                        newsSourceName = "",
+                        newsAuthor = "",
+                        newsIsBookmarked = false
                     )
                 )
             }
@@ -72,7 +82,15 @@ class Common {
             for (i in 0 until 10) {
                 topStoryList.add(
                     News(
-                        "", "", "Stories", "3", "3", "08:00 AM", false
+                        newsImageURL = "",
+                        newsURL = "",
+                        newsHeading = "",
+                        newsDescription = "",
+                        newsContent = "",
+                        newsTime = "",
+                        newsSourceName = "",
+                        newsAuthor = "",
+                        newsIsBookmarked = false
                     )
                 )
             }
@@ -84,7 +102,15 @@ class Common {
             for (i in 0 until 10) {
                 topicList.add(
                     News(
-                        "", "", "Topics", "4", "4", "08:00 AM", false
+                        newsImageURL = "",
+                        newsURL = "",
+                        newsHeading = "",
+                        newsDescription = "",
+                        newsContent = "",
+                        newsTime = "",
+                        newsSourceName = "",
+                        newsAuthor = "",
+                        newsIsBookmarked = false
                     )
                 )
             }
@@ -96,23 +122,19 @@ class Common {
             for (i in 0 until 10) {
                 onTopicList.add(
                     News(
-                        "", "", "onTopic", "5", "5", "08:00 AM", false
+                        newsImageURL = "",
+                        newsURL = "",
+                        newsHeading = "",
+                        newsDescription = "",
+                        newsContent = "",
+                        newsTime = "",
+                        newsSourceName = "",
+                        newsAuthor = "",
+                        newsIsBookmarked = false
                     )
                 )
             }
             return onTopicList
-        }
-
-        fun getBookmarks(): ArrayList<News> {
-            val bookmarkList: ArrayList<News> = ArrayList()
-            for (i in 0 until 10) {
-                bookmarkList.add(
-                    News(
-                        "", "", "Bookmarks", "6", "6", "08:00 AM", false
-                    )
-                )
-            }
-            return bookmarkList
         }
     }
 }

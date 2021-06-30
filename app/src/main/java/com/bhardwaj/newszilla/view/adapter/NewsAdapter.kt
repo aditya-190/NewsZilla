@@ -49,6 +49,8 @@ class NewsAdapter(var mContext: Context, private var newsList: ArrayList<News>) 
             intent.putExtra("newsDescription", currentPosition.newsDescription)
             intent.putExtra("newsContent", currentPosition.newsContent)
             intent.putExtra("newsTime", currentPosition.newsTime)
+            intent.putExtra("newsSourceName", currentPosition.newsSourceName)
+            intent.putExtra("newsAuthor", currentPosition.newsAuthor)
             intent.putExtra("newsIsBookmarked", currentPosition.newsIsBookmarked)
             mContext.startActivity(intent)
         }

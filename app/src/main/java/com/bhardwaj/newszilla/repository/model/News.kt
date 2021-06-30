@@ -12,6 +12,7 @@ data class News(
     @ColumnInfo(name = "description") val newsDescription: String,
     @ColumnInfo(name = "content") val newsContent: String,
     @ColumnInfo(name = "time") val newsTime: String,
+    @ColumnInfo(name = "source") val newsSourceName: String,
+    @ColumnInfo(name = "author") val newsAuthor: String,
     @ColumnInfo(name = "bookmarked", defaultValue = "0") val newsIsBookmarked: Boolean,
 )
-

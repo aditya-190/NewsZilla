@@ -21,13 +21,14 @@ import com.bhardwaj.newszilla.view.activities.ActivityMain.Companion.vpActivityM
 import com.bhardwaj.newszilla.view.adapter.NewsAdapter
 import com.bhardwaj.newszilla.view.adapter.Top5HeadingViewPager
 import com.bhardwaj.newszilla.view.adapter.TopStoryAdapter
+import com.bhardwaj.newszilla.viewmodel.NewsViewModel
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeFragment : Fragment() {
+class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
 
     private lateinit var mContext: Context
     private lateinit var mainSwipeRefresh: SwipeRefreshLayout
@@ -48,7 +49,7 @@ class HomeFragment : Fragment() {
     private lateinit var rvNews: RecyclerView
 
     fun newInstance(): HomeFragment {
-        return HomeFragment()
+        return HomeFragment(newsViewModel)
     }
 
     override fun onAttach(context: Context) {

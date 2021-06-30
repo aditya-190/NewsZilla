@@ -47,6 +47,8 @@ class TopStoryAdapter(var mContext: Context, private var topStoryList: ArrayList
             intent.putExtra("newsDescription", currentPosition.newsDescription)
             intent.putExtra("newsContent", currentPosition.newsContent)
             intent.putExtra("newsTime", currentPosition.newsTime)
+            intent.putExtra("newsSourceName", currentPosition.newsSourceName)
+            intent.putExtra("newsAuthor", currentPosition.newsAuthor)
             intent.putExtra("newsIsBookmarked", currentPosition.newsIsBookmarked)
             mContext.startActivity(intent)
         }

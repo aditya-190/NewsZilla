@@ -25,6 +25,8 @@ class NewsFragment(
     private var newsDescription: String,
     private var newsContent: String,
     private var newsTime: String,
+    private var newsSourceName: String,
+    private var newsAuthor: String,
     private var newsIsBookmarked: Boolean,
     private var newsViewModel: NewsViewModel
 ) : Fragment() {
@@ -49,6 +51,8 @@ class NewsFragment(
             newsDescription,
             newsContent,
             newsTime,
+            newsSourceName,
+            newsAuthor,
             newsIsBookmarked,
             newsViewModel
         )
@@ -102,13 +106,15 @@ class NewsFragment(
                 Snackbar.make(clNewsFragmentRoot, "Bookmark Added.", Snackbar.LENGTH_SHORT).show()
                 newsViewModel.insertBookmarks(
                     News(
-                        newsImage,
-                        newsURL,
-                        newsHeading,
-                        newsDescription,
-                        newsContent,
-                        newsTime,
-                        !newsIsBookmarked
+                        newsImageURL = newsImage,
+                        newsURL = newsURL,
+                        newsHeading = newsHeading,
+                        newsDescription = newsDescription,
+                        newsContent = newsContent,
+                        newsTime = newsTime,
+                        newsSourceName = newsSourceName,
+                        newsAuthor = newsAuthor,
+                        newsIsBookmarked = !newsIsBookmarked
                     )
                 )
                 true
