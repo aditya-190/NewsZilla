@@ -14,7 +14,7 @@ class NewsRepository(private val newsDao: NewsDao) {
     suspend fun insertBookmark(news: News) = newsDao.insertBookmark(news)
     suspend fun deleteBookmark(heading: String) = newsDao.deleteBookmark(heading)
     suspend fun insertNews(newsList: ArrayList<News>) = newsDao.insertNews(newsList)
-    suspend fun clearFullTableData() = newsDao.clearFullTableData()
+    suspend fun clearDataBefore() = newsDao.clearDataBefore()
     suspend fun getNewsFromAPI(
         url: String,
         newsType: String,

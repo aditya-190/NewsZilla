@@ -28,8 +28,8 @@ class NewsViewModel(private var repository: NewsRepository) : ViewModel() {
         repository.insertNews(newsList)
     }
 
-    fun clearFullTableData() = viewModelScope.launch(Dispatchers.IO) {
-        repository.clearFullTableData()
+    fun clearDataBefore() = viewModelScope.launch(Dispatchers.IO) {
+        repository.clearDataBefore()
     }
 
     fun getNewsFromAPI(

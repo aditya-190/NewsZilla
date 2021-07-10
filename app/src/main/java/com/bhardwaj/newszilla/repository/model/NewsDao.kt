@@ -29,6 +29,8 @@ interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNews(newsList: ArrayList<News>)
 
-    @Query("DELETE FROM news_table WHERE db_time <= datetime('now', '-7 day')")
-    suspend fun clearFullTableData()
+    @Query("DELETE FROM news_table WHERE time >= datetime('now', 'now', '-7 day')")
+    suspend fun clearDataBefore()
+
+    //TODO: Change Query To have data only of Last 10 days.
 }

@@ -17,7 +17,6 @@ import com.bhardwaj.newszilla.R
 import com.bhardwaj.newszilla.repository.NewsViewModel
 import com.bhardwaj.newszilla.repository.model.News
 import com.bhardwaj.newszilla.utils.Common
-import com.bhardwaj.newszilla.utils.Common.Companion.fetchNews
 import com.bhardwaj.newszilla.utils.NewsZillaInstance
 import com.bhardwaj.newszilla.view.activities.ActivityAllStories
 import com.bhardwaj.newszilla.view.activities.ActivityMain.Companion.vpActivityMain
@@ -25,9 +24,6 @@ import com.bhardwaj.newszilla.view.adapter.NewsAdapter
 import com.bhardwaj.newszilla.view.adapter.Top5HeadingViewPager
 import com.bhardwaj.newszilla.view.adapter.TopStoryAdapter
 import com.google.gson.Gson
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
 
@@ -124,7 +120,7 @@ class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
 
     private fun getNewsFromAPI() {
         Common.checkConnection(mContext)
-        newsViewModel.clearFullTableData()
+       // newsViewModel.clearDataBefore()
 
         newsViewModel.getNewsFromAPI(
             "https://newsapi.org/v2/top-headlines?country=in&pageSize=20&apiKey=a09d149c35f34c0eb39485201d16e546",
