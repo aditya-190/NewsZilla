@@ -118,7 +118,8 @@ class NewsFragment(
                         newsSourceName = newsSourceName,
                         newsAuthor = newsAuthor,
                         newsIsBookmarked = !newsIsBookmarked,
-                        newsType = newsType
+                        newsType = newsType,
+                        newsTimeInDB = System.currentTimeMillis()
                     )
                 )
                 true

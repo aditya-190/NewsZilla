@@ -1,9 +1,11 @@
 package com.bhardwaj.newszilla.repository
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.bhardwaj.newszilla.repository.model.News
+import com.bhardwaj.newszilla.utils.NewsZillaInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -24,6 +26,24 @@ class NewsViewModel(private var repository: NewsRepository) : ViewModel() {
 
     fun insertNews(newsList: ArrayList<News>) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertNews(newsList)
+    }
+
+    fun clearFullTableData() = viewModelScope.launch(Dispatchers.IO) {
+        repository.clearFullTableData()
+    }
+
+    fun getNewsFromAPI(
+        url: String,
+        newsType: String,
+        newsZillaInstance: NewsZillaInstance?,
+        newsViewModel: NewsViewModel
+    ) = viewModelScope.launch(Dispatchers.IO) {
+        repository.getNewsFromAPI(
+            url,
+            newsType,
+            newsZillaInstance,
+            newsViewModel
+        )
     }
 
     class NewsViewModelFactory(private val repository: NewsRepository) : ViewModelProvider.Factory {

@@ -16,4 +16,5 @@ data class News(
     @ColumnInfo(name = "author") val newsAuthor: String,
     @ColumnInfo(name = "bookmarked", defaultValue = "0") val newsIsBookmarked: Boolean,
     @ColumnInfo(name = "type") val newsType: String,
+    @ColumnInfo(name = "db_time") val newsTimeInDB: Long,
 )

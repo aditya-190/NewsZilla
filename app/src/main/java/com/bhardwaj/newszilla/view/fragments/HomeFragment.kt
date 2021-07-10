@@ -69,7 +69,7 @@ class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
         initialise(view)
         clickListeners()
         setUpAdapters()
-        getNewsFromAPI()
+        getNewsFromDB()
         return view
     }
 
@@ -124,34 +124,31 @@ class HomeFragment(private var newsViewModel: NewsViewModel) : Fragment() {
 
     private fun getNewsFromAPI() {
         Common.checkConnection(mContext)
+        newsViewModel.clearFullTableData()
 
-        GlobalScope.launch(Dispatchers.IO) {
-            fetchNews(
-                "https://newsapi.org/v2/top-headlines?country=in&pageSize=20&apiKey=a09d149c35f34c0eb39485201d16e546",
-                "heading",
-                newsZillaInstance,
-                newsViewModel
-            )
-        }
+        newsViewModel.getNewsFromAPI(
+            "https://newsapi.org/v2/top-headlines?country=in&pageSize=20&apiKey=a09d149c35f34c0eb39485201d16e546",
+            "heading",
+            newsZillaInstance,
+            newsViewModel
+        )
 
-        GlobalScope.launch(Dispatchers.IO) {
-            fetchNews(
-                "https://newsapi.org/v2/everything?language=en&q=computer&sortBy=popularity&pageSize=100&apiKey=a09d149c35f34c0eb39485201d16e546",
-                "news",
-                newsZillaInstance,
-                newsViewModel
-            )
-        }
+        newsViewModel.getNewsFromAPI(
+            "https://newsapi.org/v2/everything?language=en&q=computer&sortBy=popularity&pageSize=100&apiKey=a09d149c35f34c0eb39485201d16e546",
+            "news",
+            newsZillaInstance,
+            newsViewModel
+        )
 
-        GlobalScope.launch(Dispatchers.IO) {
-            fetchNews(
-                "https://newsapi.org/v2/top-headlines?country=in&pageSize=20&page=2&apiKey=a09d149c35f34c0eb39485201d16e546",
-                "story",
-                newsZillaInstance,
-                newsViewModel
-            )
-        }
+        newsViewModel.getNewsFromAPI(
+            "https://newsapi.org/v2/top-headlines?country=in&pageSize=20&page=2&apiKey=a09d149c35f34c0eb39485201d16e546",
+            "story",
+            newsZillaInstance,
+            newsViewModel
+        )
+    }
 
+    private fun getNewsFromDB() {
         newsViewModel.getNews.observe(viewLifecycleOwner) { news ->
             news?.let { newsAdapter.updateNewsList(news) }
             mainSwipeRefresh.isRefreshing = false
