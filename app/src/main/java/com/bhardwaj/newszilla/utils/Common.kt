@@ -110,7 +110,6 @@ class Common {
                                 newsAuthor = newsAuthor,
                                 newsIsBookmarked = false,
                                 newsType = newsType,
-                                newsTimeInDB = System.currentTimeMillis()
                             )
                             totalNews.add(singleNews)
                         }
